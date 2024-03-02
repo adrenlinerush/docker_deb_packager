@@ -45,7 +45,8 @@ for d in *; do
 
     echo "Building Package(s)."
     DEBEMAIL="Austin Mount <austin@adrenlinerush.net>"
-    dpkg-buildpackage -nc
+    #dpkg-buildpackage -nc
+    debuild -us -uc -i -I -b
   fi
 done
 
