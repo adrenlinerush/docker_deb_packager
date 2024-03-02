@@ -45,8 +45,11 @@ for d in *; do
 
     echo "Building Package(s)."
     DEBEMAIL="Austin Mount <austin@adrenlinerush.net>"
-    #dpkg-buildpackage -nc
     debuild -us -uc -i -I -b
+
+    echo "Cleaning up..."
+    cd ../
+    rm -rf $SOURCE_DIR
   fi
 done
 
