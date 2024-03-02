@@ -2,15 +2,10 @@
 #
 
 
-# Build image
-echo "Building Image"
-docker build -t deb-packager .
-docker image list
-
 # Start the container
 echo "Starting Packaging Container"
 docker run --name deb-packager \
---mount type=bind,source="$(pwd)"/debian,target=/workspace \
+--mount type=bind,source="$(pwd)"/$1,target=/workspace \
 -dit deb-packager
 docker ps -a
 

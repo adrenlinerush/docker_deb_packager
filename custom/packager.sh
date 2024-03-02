@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+echo "Install adrenlinerush repo..."
+cd /etc/apt/trusted.gpg.d/ && wget https://wiki.adrenlinerush.net/apt-repo/dists/stable/adrenlinerush-repo.gpg
+echo "deb https://wiki.adrenlinerush.net/apt-repo stable main" >> /etc/apt/sources.list
+apt-get update
+
+
 echo "Starting deb-packaging..." 
 cd /workspace
 
