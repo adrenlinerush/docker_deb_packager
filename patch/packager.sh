@@ -32,19 +32,18 @@ for d in *; do
         quilt import $f
       fi
     done
-
-    echo "Unapplying patches."
+   
+    echo "Creating source package..."
+    DEBEMAIL="Austin Mount <austin@adrenlinerush.net>" debchange --nmu "added custom patchs"
     quilt refresh
     quilt pop -a
-
-    #echo "Creating source package..."
-    #dpkg-source -b .
+    dpkg-source --commit .
+    dpkg-source -b .
 
     echo "Installing build deps.."
     mk-build-deps -i -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-install-recommends'
 
     echo "Building Package(s)."
-    DEBEMAIL="Austin Mount <austin@adrenlinerush.net>"
     debuild -us -uc -i -I -b
 
     echo "Cleaning up..."
